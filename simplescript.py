@@ -53,20 +53,33 @@ class omni_bot:
 
         self.speed = [0,0,0]
 
-        def set_speed_m1(self, v):
-            self.speed[0] = v
+    def set_speed_m1(self, v):
+        self.speed[0] = v
 
-        def set_speed_m2(self, v):
-            self.speed[1] = v
+    def set_speed_m2(self, v):
+        self.speed[1] = v
 
-        def set_speed_m3(self, v):
-            self.speed[2] = v
+    def set_speed_m3(self, v):
+        self.speed[2] = v
 
-        def set_speed(self, v1, v2, v3):
-            self.speed[0] = v1
-            self.speed[1] = v2
-            self.speed[2] = v3  
+    def set_speed(self, v1, v2, v3):
+        self.speed[0] = v1
+        self.speed[1] = v2
+        self.speed[2] = v3  
 
-        def get_speed(self):
-            return self.speed
+    def get_speed(self):
+        return self.speed
         
+    def set_speed_robot(self, x, y, w):
+        self.speed[0] = self.inversed_matrix['a']*x + self.inversed_matrix['b']*y + self.inversed_matrix['c']*w
+        self.speed[1] = self.inversed_matrix['d']*x + self.inversed_matrix['e']*y + self.inversed_matrix['f']*w
+        self.speed[2] = self.inversed_matrix['g']*x + self.inversed_matrix['h']*y + self.inversed_matrix['i']*w
+
+
+my_robot = omni_bot()
+
+print(my_robot.get_speed())
+      
+my_robot.set_speed_robot(20,0,0)
+
+print(my_robot.get_speed())
